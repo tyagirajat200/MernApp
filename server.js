@@ -62,9 +62,7 @@ const PORT = process.env.PORT || 4000
 
  app.use(cors(corsOptions))
 
-app.use("/user", UserRoutes)
-app.use("/postmessages", postMessageRoutes)
-app.use("/agenda",Agendaroutes)
+
 
 
 if(process.env.NODE_ENV === 'production'){
@@ -75,6 +73,9 @@ if(process.env.NODE_ENV === 'production'){
   })
 }
 
+app.use("/user", UserRoutes)
+app.use("/postmessages", postMessageRoutes)
+app.use("/agenda",Agendaroutes)
 
 
 

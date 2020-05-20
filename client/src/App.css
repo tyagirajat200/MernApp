@@ -1,0 +1,10 @@
+.col-md-5,
+.col-md-7 {
+  padding: 1rem;
+  background-color: #fff;
+  border: 2px solid #fff;
+  
+  text-align: center;
+}
+
+

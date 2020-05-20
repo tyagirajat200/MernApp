@@ -6,7 +6,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser')
 const db = require('./db')
-const UserRoutes = require("./routes/UserRoutes")
+const UserRoutes = require("./Routes/UserRoutes")
 const Agendaroutes=require('./Routes/Agenda')
 require("dotenv").config()
 const path=require('path')

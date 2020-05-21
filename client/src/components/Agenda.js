@@ -139,7 +139,7 @@ function Agenda() {
                         <h1 className="my-3">
                             <MDBRow>
                                 <MDBCol xs="3" className="text-center">
-                                <img src={`http://openweathermap.org/img/w/${weather.icon}.png`} alt="" />
+                                <img src={`https://openweathermap.org/img/w/${weather.icon}.png`} alt="" />
                                     
                                 </MDBCol>
                             <MDBCol xs="9">{weather.main}</MDBCol>

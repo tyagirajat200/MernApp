@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { ADD_EVENTS,DELETE_EVENTS,GET_EVENTS} from './types'
 
+if(process.env.NODE_ENV === 'production'){
+    axios.defaults.baseURL = "https://mernapp7599.herokuapp.com"
+}
+
+
 
 export const fetchAll = () => (dispatch) => {
     console.log("FETCHING ALL DATA")

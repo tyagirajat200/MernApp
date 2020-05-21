@@ -6,6 +6,7 @@ var ObjectID = require('mongoose').Types.ObjectId      // To check id passed in 
 var auth = function(req,res,next){
     const sessUser = req.session.user;
     if (sessUser) {
+        console.log("U are already logged in")
       next();
     } else {
         console.log("please log in")

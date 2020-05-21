@@ -7,6 +7,7 @@ var Agenda=require("../Models/AgendaModel")
 var auth = function(req,res,next){
     const sessUser = req.session.user;
     if (sessUser) {
+      console.log("U are already logged in")
       next();
     } else {
         console.log("please log in")

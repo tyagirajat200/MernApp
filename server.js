@@ -2,30 +2,35 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const router = express.Router();
-const mongoose = require("mongoose");
 const bodyParser = require('body-parser')
-const db = require('./db')
 const UserRoutes = require("./Routes/UserRoutes")
 const Agendaroutes=require('./Routes/Agenda')
-require("dotenv").config()
 const path=require('path')
-
-
+const config = require("./config/key");
 const postMessageRoutes = require('./Routes/PostMessageRoutes')
 var cors=require('cors')
+
+const mongoose = require("mongoose");
+mongoose.connect(config.mongoURI,
+  {
+    useNewUrlParser: true, useUnifiedTopology: true,
+    useCreateIndex: true, useFindAndModify: false
+  })
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
+
 
 
 
 // parse application/json
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 
 
 // setting up connect-mongodb-session store
 const mongoDBstore = new MongoDBStore({
-    uri: process.env.MONGODB_URI||"mongodb+srv://tyagiapp:tyagiapp@cluster0-3fzth.mongodb.net/test?retryWrites=true&w=majority",
+    uri: config.mongoURI,
     collection: "mySessions"
 });
 
@@ -37,14 +42,15 @@ mongoDBstore.on('error', () => console.log("mongoDBstore not connected"))
 
 app.use(
   session({
-    secret: "SESS_SECRET",
+    name: config.COOKIE_NAME,
+    secret: config.SESS_SECRET,
     resave: true,
     saveUninitialized: false,
     store: mongoDBstore,
     cookie: {
       maxAge: 1000 * 60 * 60 * 3, // Three hours
       sameSite: false,
-      secure: false,
+      secure: config.IS_PROD,
     }
   })
 );

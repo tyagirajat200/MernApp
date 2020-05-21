@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { GET_ERRORS , SET_CURRENT_USER ,LOGIN_SUCCESS,LOGOUT_SUCCESS} from './types';
 
+if(process.env.NODE_ENV === 'production'){
+    axios.defaults.baseURL = "https://mernapp7599.herokuapp.com"
+}
+
 
 export const registerUser = (user, history) => dispatch => {
     axios.post("/user/register", user)

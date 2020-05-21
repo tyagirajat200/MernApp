@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { CREATE,FETCH_ALL,UPDATE,DELETE } from './types'
 
+if(process.env.NODE_ENV === 'production'){
+    axios.defaults.baseURL = "https://mernapp7599.herokuapp.com"
+}
+
 // it is function that returns function
 
 export const fetchAll = (userId) => (dispatch) => {
